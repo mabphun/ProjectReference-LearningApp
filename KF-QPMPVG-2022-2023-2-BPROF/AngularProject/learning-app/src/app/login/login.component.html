@@ -1,0 +1,42 @@
+<h1>Login</h1>
+
+<div *ngIf="unsuccessful" class="alert alert-danger alert-dismissible fade show" role="alert">
+    Unsuccessful login!
+    <button type="button" (click)="alertClosed()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div class="input-group mb-3 flex-nowrap">
+    <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-user"></i></span>
+    <input 
+    type="text" 
+    class="form-control form-control-lg" 
+    id="username" 
+    placeholder="Username"
+    [(ngModel)]="this.loginModel.username"
+    >
+</div>
+
+<div class="input-group mb-3 flex-nowrap">
+    <span class="input-group-text" id="addon-wrapping"><i class="fa-solid fa-key"></i></span>
+    <input 
+    type="password" 
+    class="form-control form-control-lg" 
+    id="password" 
+    placeholder="Password"
+    [(ngModel)]="this.loginModel.password">
+    
+</div>
+
+<div class="d-grid gap-2 my-3">
+    <button 
+    class="btn btn-primary btn-lg" 
+    type="button"
+    (click)="sendLoginCredentials()"
+    [disabled]="!checkInputs()"
+    >
+    Login
+    </button>
+</div>
+<div class="social">
+    <asl-google-signin-button type="standard" size="large"> </asl-google-signin-button>
+</div>

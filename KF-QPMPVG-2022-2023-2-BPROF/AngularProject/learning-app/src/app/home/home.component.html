@@ -1,0 +1,33 @@
+<div>
+    <div class="title">
+        <h1>Welcome to Learning App! <i class="fa-solid fa-graduation-cap"></i></h1>
+        <h4>Are you ready to start learning?</h4>
+        <p>
+            On our site you can create flashcards for your own needs to memorize words, terms or anything you can write down OR you can use the sets made by others.
+            <br>
+            Afterwards you are able to test your skills via typing tests.
+        </p>
+        <button type="button" routerLink="/browse" class="btn btn-lg btn-outline-light">Lets go!</button>
+    </div>
+    
+    <div class="notifications" *ngIf="this.api.isLoggedIn()">
+        <h3>Set Notifications</h3>
+        <div *ngIf="setModels.length>0">
+            <div *ngFor="let sm of setModels" [ngClass]="sm.alertColor" class="alert alert-dismissible alert-success fade show " role="alert">
+                <i [ngClass]="sm.icon" class="fa-solid icon"></i><span class="alertText"><strong> {{sm.ownerName}}</strong> {{sm.action}} <strong>{{sm.set.name}}</strong></span>
+            </div>
+        </div>
+
+        <!-- <hr>
+        <div class="alert alert-dismissible alert-success fade show " role="alert">
+            <i class="fa-solid fa-plus icon"></i><span class="alertText"><strong> OwnerName</strong> created <b>TestSet</b></span>
+        </div>
+        <div class="alert alert-dismissible alert-warning fade show " role="alert">
+            <i class="fa-solid fa-pen-to-square icon"></i><span class="alertText"><strong> OwnerName</strong> edited <b>TestSet</b></span>
+        </div>
+        <div class="alert alert-dismissible alert-danger fade show " role="alert">
+            <i class="fa-solid fa-trash icon"></i><span class="alertText"><strong> OwnerName</strong> deleted <b>TestSet</b></span>
+        </div> -->
+        
+    </div>
+</div>

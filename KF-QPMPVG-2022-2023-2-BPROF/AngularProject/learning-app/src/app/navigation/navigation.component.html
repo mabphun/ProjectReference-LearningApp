@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <!-- <button type="button" routerLink="/own-sets" class="btn btn-light">Own Sets</button> -->
+            <a class="nav-link" *ngIf="this.api.isLoggedIn()" routerLink="/own-sets" >Own Sets</a>
+          </li>
+          <li class="nav-item">
+            <!-- <button type="button" routerLink="/browse" class="btn btn-light">Browse</button> -->
+            <a class="nav-link" routerLink="/browse">Browse</a>
+          </li>
+          <li class="nav-item">
+            <!-- <button type="button" routerLink="/create-set" class="btn btn-light">Create Set</button> -->
+            <a class="nav-link" *ngIf="this.api.isLoggedIn()" routerLink="/create-set">Create Set</a>
+          </li>
+          <!-- <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link username" *ngIf="this.api.isLoggedIn()" routerLink="/profile">Profile</a> <!--<img src="https://picsum.photos/200/200" alt="">-->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link username" *ngIf="this.api.isLoggedIn()" routerLink="/logout">Logout</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="!this.api.isLoggedIn()" routerLink="/register">Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" *ngIf="!this.api.isLoggedIn()" routerLink="/login">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<!-- <nav>
+    <button mat-flat-button routerLink="/home"><mat-icon>home</mat-icon>Home</button>
+    <button mat-flat-button routerLink="/own-sets"><mat-icon>folder</mat-icon>Own Sets</button>
+    <button mat-flat-button routerLink="/browse"><mat-icon>search</mat-icon>Browse</button>
+    <button mat-flat-button routerLink="/create-set" color="accent"><mat-icon>add_circle</mat-icon>Create Set</button>
+
+    <button mat-flat-button routerLink="/profile" class="float-right">
+        <mat-icon>face</mat-icon>
+        <span class="username">Username</span>
+        <span><img src="https://picsum.photos/200/200" alt="Profile Picture"></span>
+    </button> 
+</nav> -->
+    <!-- <img src="https://picsum.photos/200/200" alt="Profile Picture"> -->
+    <!-- <button mat-flat-button class="float-right">Login</button>
+    <button mat-flat-button color="accent" class="float-right">Register</button> -->

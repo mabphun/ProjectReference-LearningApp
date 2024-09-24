@@ -1,0 +1,76 @@
+<h3>Owned sets</h3>
+<h5>Total: <span class="badge bg-primary">{{sets.length}}</span></h5>
+<div *ngIf="show" [ngClass]="alertColor" class="alert alert-dismissible fade show" role="alert">
+  {{alertMessage}}
+  <button type="button" (click)="alertClosed()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div style="overflow-x: auto;">
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Private?</th>
+        <th scope="col">Card count</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let set of sets">
+        <td class="name align-middle">{{ set.name }}</td>
+        <td class="desc align-middle">{{ set.description }}</td>
+        <td class="align-middle">{{ set.isPrivate }}</td>
+        <td class="align-middle">{{ set.cards.length }}</td>
+        <td class="align-middle">
+          <button [routerLink]="['/modes/', set.id]" type="button" class="btn btn-success">Play</button> 
+          <button [routerLink]="['/edit/', set.id]" type="button" class="btn btn-warning">Edit</button>
+          <button (click)="selectToDelete(set)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table></div>
+
+<!-- <table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Private?</th>
+      <th scope="col">Card count</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let set of sets">
+      <td class="name align-middle">{{ set.name }}</td>
+      <td class="desc align-middle">{{ set.description }}</td>
+      <td class="align-middle">{{ set.isPrivate }}</td>
+      <td class="align-middle">{{ set.cards.length }}</td>
+      <td class="align-middle">
+        <button [routerLink]="['/modes/', set.id]" type="button" class="btn btn-success">Play</button> 
+        <button [routerLink]="['/edit/', set.id]" type="button" class="btn btn-warning">Edit</button>
+        <button (click)="selectToDelete(set)" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table> -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete this set: <b>{{selectedToDelete.name}}</b>?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button (click)="deleteSet()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Yes, delete</button>
+      </div>
+    </div>
+  </div>
+</div>

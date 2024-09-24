@@ -1,0 +1,22 @@
+<div class="user">
+    <img [src]="user.image" alt="">
+    <h3>{{ user.userName }}</h3>
+</div>
+
+<div class="stats">
+    <h3>Statistics</h3>
+    <table>
+        <tr>
+            <th class="heads">Sets created: {{getPublicSets() + getPrivateSets()}}</th>
+            <th class="heads">Times Played: {{ user.timesPlayed + user.timesCompleted}}</th>
+        </tr>
+        <tr>
+            <td>Private sets: {{getPrivateSets()}}</td>
+            <td>Completed: {{ user.timesCompleted }}</td>
+        </tr>
+        <tr>
+            <td>Public sets: {{getPublicSets()}}</td>
+            <td>Failed: {{ user.timesPlayed }}</td>
+        </tr>
+    </table>
+</div>

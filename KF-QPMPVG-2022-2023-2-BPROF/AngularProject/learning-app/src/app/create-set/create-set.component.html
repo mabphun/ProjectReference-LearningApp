@@ -1,0 +1,61 @@
+<div *ngIf="show" [ngClass]="alertColor" class="alert alert-dismissible fade show" role="alert">
+  {{alertMessage}}
+  <button type="button" (click)="alertClosed()" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+<h4>Set Informations</h4>
+<div class="mr-4">
+  
+  <div class="mb-3">
+    <label for="setName" class="form-label">Set name</label>
+    <input [(ngModel)]="set.name" minlength="5" required #setName="ngModel" type="text" class="form-control" id="setName" placeholder="Example english learning set">
+  
+    <div *ngIf="setName.touched && setName.invalid" class="alert alert-danger my-2">
+      <div *ngIf="setName.hasError('required')">
+        Name is required
+      </div>
+
+      <div *ngIf="setName.hasError('minlength')">
+        Name must be at least 5 characters long
+      </div>
+    </div>
+  </div>
+  
+  <div class="mb-3">
+    <label for="setId" class="form-label">Set ID</label>
+    <input [(ngModel)]="set.id" disabled="" type="text" class="form-control" id="setId" placeholder="ID">
+  </div>
+  
+  <div class="mb-3">
+    <label for="setDesc" class="form-label">Set description</label>
+    <textarea [(ngModel)]="set.description" class="form-control" id="setDesc" rows="3" placeholder="This example set holds questions for english learning"></textarea>
+  </div>
+
+  <div class="form-check form-switch">
+    <label class="form-check-label" for="setPriv">Private set?</label>
+    <input [(ngModel)]="set.isPrivate" class="form-check-input" type="checkbox" id="setPriv">
+  </div>
+
+  <div class="d-grid gap-2 my-2">
+    <button [disabled]="!checkCards()|| setName.invalid" (click)="createSet()" class="btn btn-success" type="button"><i class="fa-solid fa-floppy-disk"></i> Create</button>
+  </div>
+
+  <hr>
+
+  <div class="d-grid gap-2 my-2">
+    <button (click)="addCard()" class="btn btn-primary" type="button"><i class="fa-solid fa-plus"></i> Add Card</button>
+  </div>
+
+  <div *ngIf="!checkCards()" class="alert alert-danger mb-2">
+    Fill all <strong>Question</strong> and <strong>Answer</strong> fields.
+  </div>
+
+  <div *ngFor="let card of cards" class="input-group mb-3 cardClass">
+    <span class="input-group-text"><i class="fa-solid fa-question"></i></span>
+    <input required #question="ngModel" type="text" class="form-control" placeholder="Question" [(ngModel)]="card.question">
+    <span class="input-group-text"><i class="fa-solid fa-a"></i></span>
+    <input required #answer="ngModel" type="text" class="form-control" placeholder="Answer" [(ngModel)]="card.answer">
+    <span class="input-group-text"><i class="fa-solid fa-image"></i></span>
+    <input type="text" class="form-control" placeholder="Image link" [(ngModel)]="card.image">
+    <button (click)="deleteCard(card)" class="btn btn-danger delCard" type="button"><i class="fa-solid fa-delete-left"></i> Delete</button>
+  </div>
+</div>

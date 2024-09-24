@@ -1,0 +1,72 @@
+<img class="center" [src]="currentCard.image" alt="">
+
+
+<div (click)="flip()" class="flip-card">
+    <div class="flip-card-inner" [class]="{'flip': flipped}" id="card">
+        <div class="flip-card-front">
+            <div class="card text-center">
+                <div class="card-header">
+                  Question
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{currentCard.question}}</h5>
+                </div>
+                <div class="card-footer text-muted">
+                  Click to flip card
+                </div>
+            </div>
+        </div>
+        <div class="flip-card-back">
+            <div class="card text-center">
+                <div class="card-header">
+                  Answer
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{currentCard.answer}}</h5>
+                </div>
+                <div class="card-footer text-muted">
+                  Click to flip card
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-3 indexer text-muted">
+    {{index+1}} / {{set.cards.length}}
+</div>
+
+<div class="my-3">
+    <button type="button"  [disabled]="noPrevCard||finished" (click)="prevCard()" class="btn btn-secondary">Previous Question</button>
+    <button type="button"  [disabled]="noNextCard||finished" (click)="nextCard()" class="btn btn-secondary float-end">Next Question</button>
+</div>
+
+<div class="my-5 finish">
+    <button type="button" *ngIf="!finished" (click)="finish()" class="btn btn-success">Finish Learning</button>
+</div>
+
+<div *ngIf="finished" class="alert alert-success finish" role="alert">
+    <h4 class="alert-heading"><i class="fa-solid fa-check"></i> Well done!</h4>
+    <p>You just finished learning <strong>{{set.name}}</strong>.</p>
+    <hr>
+    <p class="mb-0 actions">
+        Choose an action:
+        <br>
+        <button [routerLink]="['/modes/', set.id]" class="btn btn-warning" type="button"><i class="fa-solid fa-arrow-left"></i> Back to Play Modes</button>
+        <br>
+        <button [routerLink]="['/play/', set.id]" class="btn btn-warning" type="button"><i class="fa-solid fa-play"></i> Start Test</button>
+    </p>
+</div>
+
+<!--<div (click)="flip()" class="flip-card">
+    <div class="flip-card-inner" [class]="{'flip': flipped}" id="card">
+        <div class="flip-card-front">
+            <h1>Question</h1>
+            <img src="https://picsum.photos/200/300" />
+        </div>
+        <div class="flip-card-back">
+            <h1>Answer</h1>
+            <img src="https://picsum.photos/200/300" />
+        </div>
+    </div>
+</div> -->
